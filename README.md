@@ -12,20 +12,21 @@
 
 ## Стек
 
-Express + TypeScript + `ws`. Без сборок в рантайме: `npm run build` → обычный `node dist/index.js`.
+Express + TypeScript + `ws`, менеджер пакетов — **yarn** (v1 classic, как в pep-app).
+Без сборок в рантайме: `yarn build` → обычный `node dist/index.js`.
 
 ## Запуск
 
 ```bash
-npm install
-npm run dev        # tsx watch src/index.ts (порт 9735 по умолчанию)
+yarn install
+yarn dev           # tsx watch src/index.ts (порт 9735 по умолчанию)
 ```
 
 Или production:
 
 ```bash
-npm run build
-npm start
+yarn build
+yarn start
 ```
 
 Порт меняется переменной окружения `PORT` (см. `.env.example`).
@@ -43,7 +44,7 @@ NEXT_PUBLIC_APP_WS=ws://localhost:9735
 
 Хук подключается к `${NEXT_PUBLIC_APP_WS}/identity/v3/auth/qr`, то есть
 `ws://localhost:9735/identity/v3/auth/qr` — этому маршруту и отвечает мок.
-Дополнительная настройка не нужна: `npm run dev` в обоих проектах — и всё работает.
+Дополнительная настройка не нужна: `yarn dev` в обоих проектах — и всё работает.
 
 ## Протокол
 
@@ -76,8 +77,8 @@ NEXT_PUBLIC_APP_WS=ws://localhost:9735
 
 ## Проверка реконнекта (ручной сценарий)
 
-1. Запустить мок: `npm run dev`.
-2. Запустить pep-app: `npm run dev` → открыть страницу входа с QR.
+1. Запустить мок: `yarn dev`.
+2. Запустить pep-app: `yarn dev` → открыть страницу входа с QR.
 3. В DevTools вкладки Network → WS: видно открытое соединение
    `.../identity/v3/auth/qr`, первый фрейм `QR_UPDATED`.
 4. Оборвать соединение (аналог выката на PROD):
@@ -99,8 +100,8 @@ NEXT_PUBLIC_APP_WS=ws://localhost:9735
 ## Смоук-тест (без браузера)
 
 ```bash
-npm run dev      # в одном терминале
-npm run smoke    # в другом
+yarn dev           # в одном терминале
+yarn smoke         # в другом
 ```
 
 Проверяет: `QR_UPDATED` при подключении, удаление сессии после close, новые id
